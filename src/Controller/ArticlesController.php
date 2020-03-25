@@ -34,7 +34,14 @@ class ArticlesController extends AppController
             }
             $this->Flash->error(__('Unable to add your article.'));
         }
+
         $this->set('article', $article);
+
+        // Get a list of tags.
+        $tags = $this->Articles->Tags->find('list');
+
+        // Set tags to the view context
+        $this->set('tags', $tags);
     }
 
     public function edit($slug) {
@@ -53,10 +60,16 @@ class ArticlesController extends AppController
         }
     
         $this->set('article', $article);
+
+        // Get a list of tags.
+        $tags = $this->Articles->Tags->find('list');
+
+        // Set tags to the view context
+        $this->set('tags', $tags);
     }
     
     public function delete($slug) {
-        
+
         $this->request->allowMethod(['post', 'delete']);
 
         $article = $this->Articles->findBySlug($slug)->firstOrFail();
