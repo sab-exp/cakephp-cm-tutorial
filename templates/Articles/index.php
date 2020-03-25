@@ -1,9 +1,10 @@
 <h1>Articles</h1>
-<?= $this->Html->link('Add Article', ['action' => 'add']) ?>
+<p><?= $this->Html->link('Add Article', ['action' => 'add']) ?></p>
 <table>
     <tr>
         <th>Title</th>
         <th>Created</th>
+        <th>action</th>
     </tr>
 
     <!-- Here is where we iterate through our $articles query object, printing out article info -->
@@ -15,6 +16,9 @@
         </td>
         <td>
             <?= $article->created->format(DATE_RFC850) ?>
+        </td>
+        <td>
+            <?= $this->Html->link('Edit', ['action' => 'edit', $article->slug]) ?>
         </td>
     </tr>
     <?php endforeach; ?>
